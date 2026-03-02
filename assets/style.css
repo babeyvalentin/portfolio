@@ -283,3 +283,74 @@ a{color:white}
   transition: transform .25s ease;
 }
 .ovItem:hover img{transform: scale(1.06)}
+
+/* Layout principal */
+.layout{
+  display:flex;
+  height:100svh;
+  overflow:hidden;
+}
+
+/* Partie gauche FIXE */
+.heroFixed{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  pointer-events:auto;
+  z-index:10;
+}
+
+.homeName{
+  font-size: clamp(48px, 7vw, 90px);
+  margin:0 0 18px;
+  letter-spacing:-1px;
+}
+
+.homeFilters{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+/* Partie droite scroll */
+.scrollArea{
+  width:100%;
+  height:100%;
+  overflow-y:auto;
+  padding: 40px;
+  padding-top: 60vh; /* pousse le début des images sous le nom */
+}
+
+/* Masonry style irrégulier */
+.masonry{
+  column-count: 3;
+  column-gap: 14px;
+}
+
+@media (max-width: 1000px){
+  .masonry{ column-count: 2; }
+}
+@media (max-width: 600px){
+  .masonry{ column-count: 1; }
+}
+
+.masonryItem{
+  break-inside: avoid;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#111;
+}
+
+.masonryItem img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+}
