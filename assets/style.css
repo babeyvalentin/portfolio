@@ -27,7 +27,6 @@ body{
   pointer-events:auto; /* boutons cliquables */
 }
 
-
 .homeName{
   font-size: clamp(48px, 7vw, 90px);
   margin:0 0 20px;
