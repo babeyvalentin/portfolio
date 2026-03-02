@@ -20,7 +20,11 @@ body{
   align-items:center;
   text-align:center;
   z-index:10;
-  pointer-events:auto;
+  pointer-events:none; /* <-- IMPORTANT : laisse passer le scroll */
+}
+
+.homeFilters, .homeFilters *{
+  pointer-events:auto; /* boutons cliquables */
 }
 
 .homeName{
