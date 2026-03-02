@@ -1,6 +1,6 @@
 // Contenu du portfolio (modifie librement)
 window.PORTFOLIO = {
-  artistName: "Babey Valentin",
+  artistName: "BabeyValentin",
   role: "Art Director",
   instagram: "https://instagram.com/",
   biography: `
