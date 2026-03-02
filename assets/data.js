@@ -1,12 +1,12 @@
 // Contenu du portfolio (modifie librement)
 window.PORTFOLIO = {
-  artistName: "Ton Nom",
-  role: "Photographer, Director",
+  artistName: "Babey Valentin",
+  role: "Art Director",
   instagram: "https://instagram.com/",
   biography: `
     <p><strong>Ton Nom</strong> — courte bio en 5–8 lignes.</p>
     <p>Décris ton style, tes clients, ton approche, ta ville.</p>
-    <p>Email : <a href="mailto:tonmail@email.com">tonmail@email.com</a></p>
+    <p>Email : <a href="mailto:babeyvalentin@gmail.com">tonmail@email.com</a></p>
   `,
   projects: [
     {
