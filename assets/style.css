@@ -97,7 +97,7 @@ a{color:inherit}
   -webkit-overflow-scrolling: touch;
 
   padding: 40px;
-  padding-top: 48vh; /* <-- visuels plus haut (ajuste 42–55vh) */
+  padding-top: 28vh; /* <-- visuels plus haut (ajuste 42–55vh) */
 }
 
 /* --------- OVERVIEW EDITORIALE (GRID DENSE) --------- */
