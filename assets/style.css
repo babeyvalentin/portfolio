@@ -91,14 +91,14 @@ a{color:inherit}
   overflow-y:auto;
   overflow-x:hidden;
   padding: 40px;
-  padding-top: 38vh; /* démarre les images sous le nom */
+  padding-top: 18vh; /* démarre les images sous le nom */
   -webkit-overflow-scrolling: touch;
 }
 
 /* --------- MASONRY (overview organique) --------- */
 
 .masonry{
-  column-count: 3;
+  column-count: 2;
   column-gap: 14px;
 }
 
