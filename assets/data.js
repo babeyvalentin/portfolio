@@ -12,7 +12,7 @@ window.PORTFOLIO = {
     {
       id: "goop-editorial",
       title: "GOOP",
-      category: "Editorial",
+      category: "Commercial",
       description: "Série éditoriale — description courte.",
       cover: "https://picsum.photos/seed/goop/1200/800",
       images: [
@@ -35,7 +35,7 @@ window.PORTFOLIO = {
     {
       id: "still-of-things-motion",
       title: "STILL OF THINGS",
-      category: "Motion",
+      category: "Commercial",
       description: "Projet motion — description courte.",
       cover: "https://picsum.photos/seed/motion/1200/800",
       images: [
@@ -46,7 +46,7 @@ window.PORTFOLIO = {
     {
       id: "personal-experiments",
       title: "EXPERIMENTS",
-      category: "Personal",
+      category: "ReAIlized Lab",
       description: "Explorations personnelles — description courte.",
       cover: "https://picsum.photos/seed/personal/1200/800",
       images: [
