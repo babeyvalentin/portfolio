@@ -143,3 +143,15 @@ function renderProject(){
 setupBio();
 renderEditorialOverview();
 renderProject();
+
+document.querySelectorAll("a").forEach(link => {
+  if(link.hostname === window.location.hostname){
+    link.addEventListener("click", function(e){
+      e.preventDefault();
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        window.location = this.href;
+      }, 350);
+    });
+  }
+});
