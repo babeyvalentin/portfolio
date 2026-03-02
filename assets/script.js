@@ -22,7 +22,6 @@ function getAllImagesByCategory(category){
   const imgs = [];
   for(const proj of p){
     if(category && proj.category !== category) continue;
-    // on pioche dans images + cover (cover en premier)
     if(proj.cover) imgs.push({src: proj.cover, projectId: proj.id, title: proj.title});
     for(const src of (proj.images || [])){
       imgs.push({src, projectId: proj.id, title: proj.title});
@@ -83,8 +82,7 @@ function setupHome(){
   const homeName = qs("#homeName");
   if(homeName && window.PORTFOLIO.artistName) homeName.textContent = window.PORTFOLIO.artistName;
 
-  let current = "Commercial"; // filtre par défaut
-  renderOverview(current);
+renderOverview(); // affiche toutes les images au lieu de filtrer
 
   qsa(".filter").forEach(btn => {
     btn.addEventListener("click", () => {
