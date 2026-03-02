@@ -51,10 +51,9 @@ a{color:inherit}
 
 /* Nom */
 .homeName{
+  font-family: 'Playfair Display', serif;
   font-size: clamp(48px, 7vw, 90px);
-  margin:0 0 18px;
   letter-spacing:-1px;
-  line-height:1.05;
 }
 
 /* Boutons cliquables malgré pointer-events:none */
