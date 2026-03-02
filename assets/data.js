@@ -46,7 +46,7 @@ window.PORTFOLIO = {
     {
       id: "personal-experiments",
       title: "EXPERIMENTS",
-      category: "ReAIlized Lab",
+      category: "Reailized Lab",
       description: "Explorations personnelles — description courte.",
       cover: "https://picsum.photos/seed/personal/1200/800",
       images: [
