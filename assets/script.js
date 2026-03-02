@@ -41,17 +41,20 @@ function shuffle(arr){
 }
 
 function renderOverview(category){
-  const grid = qs("#overviewGrid");
+  const grid = document.getElementById("overviewGrid");
   if(!grid) return;
 
   const all = getAllImagesByCategory(category);
-  const picks = shuffle(all).slice(0, 9); // nombre d’images affichées
+  const shuffled = shuffle(all);
 
-  grid.innerHTML = picks.map(item => `
-    <a class="ovItem" href="project.html?id=${encodeURIComponent(item.projectId)}" aria-label="${escapeHtml(item.title)}">
-      <img loading="lazy" src="${item.src}" alt="${escapeHtml(item.title)}">
-    </a>
-  `).join("") || `<p style="color:rgba(242,242,242,.72)">Aucune image trouvée. Ajoute des images dans assets/data.js.</p>`;
+  grid.innerHTML = shuffled.map(item => {
+    const randomHeight = Math.floor(Math.random() * 200) + 250;
+    return `
+      <a class="masonryItem" href="project.html?id=${item.projectId}">
+        <img src="${item.src}" style="aspect-ratio: 4 / ${Math.random() > 0.5 ? 5 : 6};">
+      </a>
+    `;
+  }).join("");
 }
 
 /* -------- Bio modal -------- */
