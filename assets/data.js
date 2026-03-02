@@ -4,7 +4,7 @@ window.PORTFOLIO = {
   role: "Art Director",
   instagram: "https://instagram.com/",
   biography: `
-    <p><strong>Ton Nom</strong> — courte bio en 5–8 lignes.</p>
+    <p><strong>Babey Valentin</strong> — courte bio en 5–8 lignes.</p>
     <p>Décris ton style, tes clients, ton approche, ta ville.</p>
     <p>Email : <a href="mailto:babeyvalentin@gmail.com">tonmail@email.com</a></p>
   `,
