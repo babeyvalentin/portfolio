@@ -10,33 +10,25 @@
 <body>
 
   <!-- Home centered -->
-  <main class="home wrap">
-    <section class="homeCenter" aria-label="Accueil">
-      <h1 class="homeName" id="homeName">Valentin Babey</h1>
+ <main class="layout">
 
-      <div class="homeFilters">
-  <a class="homeBtn" href="commercial.html">Commercial</a>
-  <a class="homeBtn" href="reailized.html">ReAIlized Lab</a>
-  <button class="homeBtn" id="bioBtn" type="button">Biography</button>
-</div>
-    </section>
+  <!-- Partie fixe (centrée) -->
+  <section class="heroFixed">
+    <h1 class="homeName">Valentin Babey</h1>
 
-    <!-- Random overview -->
-    <section class="overview" aria-label="Overview random">
-      <div class="overviewHead">
-        <span class="overviewTitle">Overview</span>
-        <button class="linklike" id="rerollBtn" type="button">Randomize</button>
-      </div>
-      <div class="overviewGrid" id="overviewGrid"></div>
-    </section>
+    <div class="homeFilters">
+      <a class="homeBtn" href="commercial.html">Commercial</a>
+      <a class="homeBtn" href="reailized.html">ReAIlized Lab</a>
+      <button class="homeBtn" id="bioBtn">Biography</button>
+    </div>
+  </section>
 
-    <!-- (Optionnel) si tu veux garder une grille par projet -->
-    <section class="grid" id="grid" aria-label="Projets" hidden></section>
+  <!-- Partie scrollable -->
+  <section class="scrollArea">
+    <div class="masonry" id="overviewGrid"></div>
+  </section>
 
-    <footer class="footer">
-      <div>© <span id="year"></span> — All rights reserved</div>
-    </footer>
-  </main>
+</main>
 
   <!-- Bio modal -->
   <dialog class="modal" id="bioModal" aria-label="Biography">
