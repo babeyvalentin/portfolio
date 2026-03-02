@@ -91,7 +91,7 @@ a{color:inherit}
   overflow-y:auto;
   overflow-x:hidden;
   padding: 40px;
-  padding-top: 62vh; /* démarre les images sous le nom */
+  padding-top: 38vh; /* démarre les images sous le nom */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -132,6 +132,28 @@ a{color:inherit}
 .masonryItem:hover img{
   transform: scale(1.06);
 }
+
+/* Variations éditoriales */
+.masonryItem img{
+  width:100%;
+  height:auto;
+  display:block;
+  /* on garde le hover existant si tu l’as */
+}
+
+/* ratios */
+.r-portrait img{ aspect-ratio: 3 / 4; object-fit: cover; }
+.r-tall img{ aspect-ratio: 2 / 3; object-fit: cover; }
+.r-square img{ aspect-ratio: 1 / 1; object-fit: cover; }
+.r-landscape img{ aspect-ratio: 4 / 3; object-fit: cover; }
+.r-wide img{ aspect-ratio: 16 / 9; object-fit: cover; }
+.r-pano img{ aspect-ratio: 21 / 9; object-fit: cover; }
+
+/* un peu de rythme (micro décalages) */
+.masonryItem{ margin-bottom: 14px; }
+.masonryItem.offset-1{ margin-top: 10px; }
+.masonryItem.offset-2{ margin-top: 18px; }
+.masonryItem.offset-3{ margin-top: 28px; }
 
 /* --------- (OPTIONNEL) Grid / cards si tu les utilises sur d’autres pages --------- */
 
