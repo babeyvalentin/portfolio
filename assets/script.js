@@ -11,7 +11,7 @@ function renderIndex(){
   if(!window.PORTFOLIO) return;
 
   // Title/meta (optionnel : si tu veux injecter dynamiquement)
-  document.title = `${window.PORTFOLIO.artistName} — Portfolio`;
+  document.title = `${window.PORTFOLIO.BabeyValentin} — Portfolio`;
 
   const grid = qs("#grid");
   if(!grid) return;
