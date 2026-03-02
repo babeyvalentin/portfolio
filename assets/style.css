@@ -6,6 +6,9 @@
   --chip:rgba(242,242,242,.10);
   --r:16px;
   --max:1160px;
+
+  /* overview editorial grid */
+  --gap:14px;
 }
 
 *{box-sizing:border-box}
@@ -17,7 +20,7 @@ body{
   background: var(--bg);
   color: var(--fg);
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  overflow:hidden; /* IMPORTANT: c’est scrollArea qui scroll */
+  overflow:hidden; /* IMPORTANT: seul scrollArea scrolle */
 }
 
 a{color:inherit}
@@ -42,7 +45,8 @@ a{color:inherit}
   text-align:center;
   z-index:10;
 
-  pointer-events:none; /* laisse passer le scroll */
+  /* laisse passer le scroll vers .scrollArea */
+  pointer-events:none;
 }
 
 /* Nom */
@@ -53,7 +57,7 @@ a{color:inherit}
   line-height:1.05;
 }
 
-/* Boutons (cliquables malgré pointer-events:none sur le parent) */
+/* Boutons cliquables malgré pointer-events:none */
 .homeFilters{
   display:flex;
   gap:12px;
@@ -90,143 +94,70 @@ a{color:inherit}
   inset:0;
   overflow-y:auto;
   overflow-x:hidden;
-  padding: 40px;
-  padding-top: 38vh; /* démarre les images sous le nom */
   -webkit-overflow-scrolling: touch;
+
+  padding: 40px;
+  padding-top: 48vh; /* <-- visuels plus haut (ajuste 42–55vh) */
 }
 
-/* --------- MASONRY (overview organique) --------- */
+/* --------- OVERVIEW EDITORIALE (GRID DENSE) --------- */
+/* On passe d’un "masonry columns" à une grille éditoriale dense,
+   avec éléments qui prennent des tailles différentes (cols/rows). */
 
-.masonry{
-  column-count: 3;
-  column-gap: 14px;
+#overviewGrid{
+  display:grid;
+  gap: var(--gap);
+  grid-auto-flow: dense;
+
+  /* 12 colonnes = très flexible pour faire des formats variés */
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items:start;
 }
 
-@media (max-width: 1000px){
-  .scrollArea{padding: 22px; padding-top: 60vh;}
-  .masonry{column-count: 2;}
+/* Responsive */
+@media (max-width: 1050px){
+  .scrollArea{padding: 22px; padding-top: 50vh;}
+  #overviewGrid{grid-template-columns: repeat(10, minmax(0, 1fr));}
 }
-@media (max-width: 600px){
-  .scrollArea{padding: 16px; padding-top: 58vh;}
-  .masonry{column-count: 1;}
+@media (max-width: 720px){
+  .scrollArea{padding: 16px; padding-top: 52vh;}
+  #overviewGrid{grid-template-columns: repeat(6, minmax(0, 1fr));}
 }
 
-.masonryItem{
-  break-inside: avoid;
-  display:block;
-  margin-bottom: 14px;
+/* Une tuile "éditoriale" */
+.ov{
+  grid-column: span var(--c, 4);
+  grid-row: span var(--rspan, 6);
+
   border-radius: 14px;
   overflow:hidden;
   border:1px solid var(--line);
   background:#111;
   text-decoration:none;
+
+  transform: translateY(var(--y, 0px));
 }
 
-.masonryItem img{
-  width:100%;
-  height:auto;
-  display:block;
-  transform: scale(1.02);
-  transition: transform .25s ease;
-}
-.masonryItem:hover img{
-  transform: scale(1.06);
-}
-
-/* Variations éditoriales */
-.masonryItem img{
-  width:100%;
-  height:auto;
-  display:block;
-  /* on garde le hover existant si tu l’as */
-}
-
-/* ratios */
-.r-portrait img{ aspect-ratio: 3 / 4; object-fit: cover; }
-.r-tall img{ aspect-ratio: 2 / 3; object-fit: cover; }
-.r-square img{ aspect-ratio: 1 / 1; object-fit: cover; }
-.r-landscape img{ aspect-ratio: 4 / 3; object-fit: cover; }
-.r-wide img{ aspect-ratio: 16 / 9; object-fit: cover; }
-.r-pano img{ aspect-ratio: 21 / 9; object-fit: cover; }
-
-/* un peu de rythme (micro décalages) */
-.masonryItem{ margin-bottom: 14px; }
-.masonryItem.offset-1{ margin-top: 10px; }
-.masonryItem.offset-2{ margin-top: 18px; }
-.masonryItem.offset-3{ margin-top: 28px; }
-
-/* --------- (OPTIONNEL) Grid / cards si tu les utilises sur d’autres pages --------- */
-
-.grid{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:14px;
-  padding:16px 0 30px;
-}
-@media (max-width: 980px){ .grid{grid-template-columns:repeat(2,1fr)} }
-@media (max-width: 620px){ .grid{grid-template-columns:1fr} }
-
-.card{
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  overflow:hidden;
-  background: rgba(242,242,242,.02);
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;
-  min-height: 260px;
-}
-.thumb{
-  aspect-ratio: 4 / 3;
-  background:#111;
-  overflow:hidden;
-}
-.thumb img{
+/* Image remplit la tuile */
+.ov img{
   width:100%;
   height:100%;
-  object-fit:cover;
   display:block;
+  object-fit:cover;
   transform: scale(1.02);
   transition: transform .25s ease;
 }
-.card:hover .thumb img{transform: scale(1.06)}
-.card__body{padding:12px 12px 14px}
-.card__title{margin:0 0 6px; font-size:14px; letter-spacing:.2px; color:var(--fg)}
-.tag{
-  border:1px solid var(--line);
-  background:var(--chip);
-  color:var(--fg);
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
+.ov:hover img{transform: scale(1.06)}
+
+/* Petite variation de “matière” */
+.ov.is-soft{
+  background: rgba(242,242,242,.02);
+}
+.ov.is-hard{
+  background: rgba(0,0,0,.35);
 }
 
-/* --------- Project page gallery (si tu utilises project.html) --------- */
-
-.projectHead{padding:22px 0 8px}
-.projectTitle{margin:0 0 10px; font-size: clamp(28px, 4vw, 46px)}
-.projectDesc{margin:10px 0 0; color:var(--muted); max-width: 70ch}
-.projectMeta{display:flex; gap:10px; align-items:center}
-
-.gallery{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:12px;
-  padding:18px 0 34px;
-}
-.frame{
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  overflow:hidden;
-  background:#0f0f0f;
-}
-.frame img{
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-/* --------- Modal (Biography) --------- */
+/* --------- MODAL (BIOGRAPHY) --------- */
 
 .modal::backdrop{background: rgba(0,0,0,.6)}
 .modal{
@@ -268,3 +199,22 @@ a{color:inherit}
   cursor:pointer;
 }
 .x:hover{background:rgba(242,242,242,.06)}
+
+/* --------- (Optionnel) styles pour pages projets si tu les utilises --------- */
+.gallery{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+  padding:18px 0 34px;
+}
+.frame{
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  overflow:hidden;
+  background:#0f0f0f;
+}
+.frame img{
+  width:100%;
+  height:auto;
+  display:block;
+}
