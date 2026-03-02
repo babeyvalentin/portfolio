@@ -1,6 +1,6 @@
 // Contenu du portfolio (modifie librement)
 window.PORTFOLIO = {
-  artistName: "BabeyValentin",
+  artistName: "Ton Nomm",
   role: "Art Director",
   instagram: "https://instagram.com/",
   biography: `
