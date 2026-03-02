@@ -17,7 +17,7 @@ body{
   color:var(--fg);
 }
 
-.wrap{max-width:var(--max); margin:0 auto; padding:18px}
+.wrap{max-width:var(--max); margin:0 auto; padding:0px}
 a{color:white}
 
 .topbar{
