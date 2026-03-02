@@ -27,6 +27,7 @@ body{
   pointer-events:auto; /* boutons cliquables */
 }
 
+
 .homeName{
   font-size: clamp(48px, 7vw, 90px);
   margin:0 0 20px;
@@ -39,7 +40,7 @@ body{
   inset:0;
   overflow-y:auto;
   padding:40px;
-  padding-top:70vh; /* espace sous le nom */
+  padding-top:50vh; /* espace sous le nom */
 }
 
 /* Masonry */
