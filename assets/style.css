@@ -21,6 +21,11 @@ body{
   color: var(--fg);
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   overflow:hidden; /* IMPORTANT: seul scrollArea scrolle */
+  transition: opacity .4s ease;
+}
+
+body.fade-out{
+  opacity:0;
 }
 
 a{color:inherit}
