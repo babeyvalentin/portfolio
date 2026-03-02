@@ -3,49 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Babey Valentin — Portfolio</title>
-  <meta name="description" content="Portfolio — sélection de projets, filtres, bio." />
+  <title>Valentin Babey — Portfolio</title>
+  <meta name="description" content="Portfolio — sélection de projets." />
   <link rel="stylesheet" href="./assets/style.css" />
-<script defer src="./assets/data.js"></script>
-<script defer src="./assets/script.js"></script>
 </head>
 <body>
-  <!-- Top bar -->
-  <header class="topbar">
-    <div class="wrap topbar__inner">
-      <a class="brand" href="./">Babey Valentin</a>
 
-      <nav class="topnav">
-        <button class="linklike" id="bioBtn" type="button">biography</button>
-        <a class="linklike" href="#grid">View all</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Home centered -->
+  <main class="home wrap">
+    <section class="homeCenter" aria-label="Accueil">
+      <h1 class="homeName" id="homeName">Valentin Babey</h1>
 
-  <!-- Title + Filters -->
-  <main class="wrap">
-    <section class="hero">
-      <h1 class="hero__title">Babey Valentin</h1>
-
-      <div class="filters" aria-label="Filtres">
-        <button class="filter is-active" data-filter="all" type="button">View all</button>
-        <button class="filter" data-filter="Editorial" type="button">Editorial</button>
-        <button class="filter" data-filter="Commercial" type="button">Commercial</button>
-        <button class="filter" data-filter="Motion" type="button">Motion</button>
-        <button class="filter" data-filter="Personal" type="button">Personal</button>
-      </div>
-
-      <div class="hero__meta">
-        <a class="metaLink" href="https://instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
-        <span class="dot">•</span>
-        <span class="role">Art Director</span>
+      <div class="homeFilters" aria-label="Navigation">
+        <button class="homeBtn filter is-active" data-filter="Commercial" type="button">Commercial</button>
+        <button class="homeBtn filter" data-filter="Realized Lab" type="button">Realized Lab</button>
+        <button class="homeBtn" id="bioBtn" type="button">Biography</button>
       </div>
     </section>
 
-    <!-- Grid -->
-    <section id="grid" class="grid" aria-label="Projets">
-      <!-- Rempli par JS -->
+    <!-- Random overview -->
+    <section class="overview" aria-label="Overview random">
+      <div class="overviewHead">
+        <span class="overviewTitle">Overview</span>
+        <button class="linklike" id="rerollBtn" type="button">Randomize</button>
+      </div>
+      <div class="overviewGrid" id="overviewGrid"></div>
     </section>
+
+    <!-- (Optionnel) si tu veux garder une grille par projet -->
+    <section class="grid" id="grid" aria-label="Projets" hidden></section>
 
     <footer class="footer">
       <div>© <span id="year"></span> — All rights reserved</div>
@@ -59,31 +45,11 @@
         <strong>Biography</strong>
         <button class="x" id="bioClose" type="button" aria-label="Fermer">✕</button>
       </div>
-      <div class="modal__body" id="bioContent">
-        <!-- Rempli par JS -->
-      </div>
+      <div class="modal__body" id="bioContent"></div>
     </div>
   </dialog>
 
-  <!-- PDF selection demo modal -->
-  <dialog class="modal" id="pdfModal" aria-label="PDF selection">
-    <div class="modal__card">
-      <div class="modal__head">
-        <strong>PDF selection</strong>
-        <button class="x" id="pdfClose" type="button" aria-label="Fermer">✕</button>
-      </div>
-      <div class="modal__body">
-        <p style="margin-top:0">
-          Démo : sur le site original il y a une logique de “sélection d’images”.
-          Ici je te laisse un placeholder. On peut l’implémenter si tu veux (sélection + export).
-        </p>
-        <button class="btn" id="fakePdf" type="button">+ Custom PDF (démo)</button>
-        <p class="hint" id="pdfHint" hidden>✅ Démo : “PDF request sent”.</p>
-      </div>
-    </div>
-  </dialog>
-
-  <script src="assets/data.js"></script>
-  <script src="assets/script.js"></script>
+  <script src="./assets/data.js"></script>
+  <script src="./assets/script.js"></script>
 </body>
 </html>
