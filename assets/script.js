@@ -41,20 +41,34 @@ function shuffle(arr){
 }
 
 function renderOverview(category){
-  const grid = document.getElementById("overviewGrid");
-  if(!grid) return;
+const ratios = [
+  { cls: "r-portrait", w: 3, h: 4, weight: 24 },
+  { cls: "r-tall",     w: 2, h: 3, weight: 14 },
+  { cls: "r-square",   w: 1, h: 1, weight: 12 },
+  { cls: "r-landscape",w: 4, h: 3, weight: 22 },
+  { cls: "r-wide",     w: 16,h: 9, weight: 18 },
+  { cls: "r-pano",     w: 21,h: 9, weight: 10 }
+];
 
-  const all = getAllImagesByCategory(category);
-  const shuffled = shuffle(all);
+function pickWeighted(list){
+  const total = list.reduce((s,x)=>s + x.weight, 0);
+  let r = Math.random() * total;
+  for(const item of list){
+    r -= item.weight;
+    if(r <= 0) return item;
+  }
+  return list[list.length - 1];
+}
 
-  grid.innerHTML = shuffled.map(item => {
-    const randomHeight = Math.floor(Math.random() * 200) + 250;
-    return `
-      <a class="masonryItem" href="project.html?id=${item.projectId}">
-        <img src="${item.src}" style="aspect-ratio: 4 / ${Math.random() > 0.5 ? 5 : 6};">
-      </a>
-    `;
-  }).join("");
+grid.innerHTML = shuffled.map(item => {
+  const r = pickWeighted(ratios);
+  const offset = Math.random() < 0.55 ? "" : `offset-${1 + Math.floor(Math.random()*3)}`;
+  return `
+    <a class="masonryItem ${r.cls} ${offset}" href="project.html?id=${encodeURIComponent(item.projectId)}">
+      <img loading="lazy" src="${item.src}" alt="${escapeHtml(item.title)}">
+    </a>
+  `;
+}).join("");
 }
 
 /* -------- Bio modal -------- */
