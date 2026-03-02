@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Category — Portfolio</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body style="overflow:auto">
+
+  <header class="topbar" style="position:sticky;top:0;z-index:20;background:rgba(11,11,11,.75);backdrop-filter:blur(10px);border-bottom:1px solid rgba(242,242,242,.16);">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <a class="homeBtn" href="./">Home</a>
+      <strong id="catTitle" style="color:rgba(242,242,242,.9);letter-spacing:.2px"></strong>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding-top:22px">
+    <section class="grid" id="categoryGrid"></section>
+  </main>
+
+  <script src="./assets/data.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const cat = params.get("cat") || "Commercial";
+
+    document.getElementById("catTitle").textContent = cat;
+    document.title = cat + " — " + (window.PORTFOLIO?.artistName || "Portfolio");
+
+    const grid = document.getElementById("categoryGrid");
+    const projects = (window.PORTFOLIO?.projects || []).filter(p => p.category === cat);
+
+    if(!projects.length){
+      grid.innerHTML = '<p style="color:rgba(242,242,242,.72)">Aucun projet dans cette catégorie.</p>';
+    } else {
+      grid.innerHTML = projects.map(p => `
+        <a class="card" href="project.html?id=${encodeURIComponent(p.id)}" aria-label="${p.title}">
+          <div class="thumb">
+            <img loading="lazy" src="${p.cover}" alt="${p.title}">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">${p.title}</h3>
+            <div style="margin-top:8px;">
+              <span class="tag">${p.category}</span>
+            </div>
+          </div>
+        </a>
+      `).join("");
+    }
+  </script>
+
+</body>
+</html>
