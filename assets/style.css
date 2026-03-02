@@ -35,7 +35,7 @@ body{
   inset:0;
   overflow-y:auto;
   padding:40px;
-  padding-top:70vh; /* espace sous le nom */
+  padding-top:50vh; /* espace sous le nom */
 }
 
 /* Masonry */
