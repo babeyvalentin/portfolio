@@ -18,7 +18,7 @@ body{
 }
 
 .wrap{max-width:var(--max); margin:0 auto; padding:18px}
-a{color:inherit}
+a{color:white}
 
 .topbar{
   position:sticky; top:0; z-index:10;
