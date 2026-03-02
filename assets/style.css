@@ -1,16 +1,37 @@
-/* --- Layout global --- */
+:root{
+  --bg:#0b0b0b;
+  --fg:#f2f2f2;
+  --muted:rgba(242,242,242,.72);
+  --line:rgba(242,242,242,.16);
+  --chip:rgba(242,242,242,.10);
+  --r:16px;
+  --max:1160px;
+}
+
+*{box-sizing:border-box}
+html, body{height:100%}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
-  overflow:hidden; /* empêche le body de scroller */
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  overflow:hidden; /* IMPORTANT: c’est scrollArea qui scroll */
 }
+
+a{color:inherit}
+.wrap{max-width:var(--max); margin:0 auto; padding:18px}
+
+/* --------- HOME FIXED CENTER + SCROLL OVERVIEW --------- */
 
 .layout{
   position:relative;
   height:100vh;
+  width:100vw;
 }
 
-/* Partie fixe centrée */
+/* Bloc fixe centré (ne bouge pas) */
 .heroFixed{
   position:fixed;
   inset:0;
@@ -20,52 +41,208 @@ body{
   align-items:center;
   text-align:center;
   z-index:10;
-  pointer-events:none; /* <-- IMPORTANT : laisse passer le scroll */
+
+  pointer-events:none; /* laisse passer le scroll */
 }
 
-.homeFilters, .homeFilters *{
-  pointer-events:auto; /* boutons cliquables */
-}
-
+/* Nom */
 .homeName{
   font-size: clamp(48px, 7vw, 90px);
-  margin:0 0 20px;
+  margin:0 0 18px;
   letter-spacing:-1px;
+  line-height:1.05;
 }
 
-/* Partie scrollable */
+/* Boutons (cliquables malgré pointer-events:none sur le parent) */
+.homeFilters{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+
+  pointer-events:auto;
+}
+.homeFilters *{pointer-events:auto}
+
+.homeBtn{
+  appearance:none;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--muted);
+  padding:12px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:13px;
+  text-decoration:none;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .05s ease;
+}
+.homeBtn:hover{
+  color:var(--fg);
+  border-color: rgba(242,242,242,.28);
+  background: rgba(242,242,242,.06);
+  transform: translateY(-1px);
+}
+
+/* Zone qui SCROLL (sous le nom) */
 .scrollArea{
   position:absolute;
   inset:0;
   overflow-y:auto;
-  padding:40px;
-  padding-top:50vh; /* espace sous le nom */
+  overflow-x:hidden;
+  padding: 40px;
+  padding-top: 62vh; /* démarre les images sous le nom */
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Masonry */
+/* --------- MASONRY (overview organique) --------- */
+
 .masonry{
-  column-count:3;
-  column-gap:14px;
+  column-count: 3;
+  column-gap: 14px;
 }
 
-@media (max-width:1000px){
-  .masonry{ column-count:2; }
+@media (max-width: 1000px){
+  .scrollArea{padding: 22px; padding-top: 60vh;}
+  .masonry{column-count: 2;}
 }
-@media (max-width:600px){
-  .masonry{ column-count:1; }
+@media (max-width: 600px){
+  .scrollArea{padding: 16px; padding-top: 58vh;}
+  .masonry{column-count: 1;}
 }
 
 .masonryItem{
-  break-inside:avoid;
-  margin-bottom:14px;
-  border-radius:14px;
+  break-inside: avoid;
+  display:block;
+  margin-bottom: 14px;
+  border-radius: 14px;
   overflow:hidden;
   border:1px solid var(--line);
   background:#111;
+  text-decoration:none;
 }
 
 .masonryItem img{
   width:100%;
   height:auto;
   display:block;
+  transform: scale(1.02);
+  transition: transform .25s ease;
 }
+.masonryItem:hover img{
+  transform: scale(1.06);
+}
+
+/* --------- (OPTIONNEL) Grid / cards si tu les utilises sur d’autres pages --------- */
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+  padding:16px 0 30px;
+}
+@media (max-width: 980px){ .grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width: 620px){ .grid{grid-template-columns:1fr} }
+
+.card{
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  overflow:hidden;
+  background: rgba(242,242,242,.02);
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  min-height: 260px;
+}
+.thumb{
+  aspect-ratio: 4 / 3;
+  background:#111;
+  overflow:hidden;
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform: scale(1.02);
+  transition: transform .25s ease;
+}
+.card:hover .thumb img{transform: scale(1.06)}
+.card__body{padding:12px 12px 14px}
+.card__title{margin:0 0 6px; font-size:14px; letter-spacing:.2px; color:var(--fg)}
+.tag{
+  border:1px solid var(--line);
+  background:var(--chip);
+  color:var(--fg);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+}
+
+/* --------- Project page gallery (si tu utilises project.html) --------- */
+
+.projectHead{padding:22px 0 8px}
+.projectTitle{margin:0 0 10px; font-size: clamp(28px, 4vw, 46px)}
+.projectDesc{margin:10px 0 0; color:var(--muted); max-width: 70ch}
+.projectMeta{display:flex; gap:10px; align-items:center}
+
+.gallery{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+  padding:18px 0 34px;
+}
+.frame{
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  overflow:hidden;
+  background:#0f0f0f;
+}
+.frame img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* --------- Modal (Biography) --------- */
+
+.modal::backdrop{background: rgba(0,0,0,.6)}
+.modal{
+  border:none;
+  padding:0;
+  background:transparent;
+}
+
+.modal__card{
+  width:min(720px, calc(100vw - 28px));
+  border:1px solid var(--line);
+  border-radius: var(--r);
+  background: rgba(11,11,11,.92);
+  overflow:hidden;
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+}
+
+.modal__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 14px;
+  border-bottom:1px solid var(--line);
+}
+
+.modal__body{
+  padding:14px 14px 18px;
+  color:var(--muted);
+}
+.modal__body a{color:var(--fg)}
+
+.x{
+  appearance:none;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--fg);
+  width:34px; height:34px;
+  border-radius:999px;
+  cursor:pointer;
+}
+.x:hover{background:rgba(242,242,242,.06)}
